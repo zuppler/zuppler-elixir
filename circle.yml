@@ -9,6 +9,7 @@ dependencies:
     - _build
   pre:
     - ./circle_pre_build.sh
+    - mix deps.get
     - mix deps.compile
     - mix compile
 
