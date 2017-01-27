@@ -1,0 +1,18 @@
+machine:
+  environment:
+    PATH: "$HOME/dependencies/erlang/bin:$HOME/dependencies/elixir/bin:$PATH"
+    MIX_ENV: test
+dependencies:
+  cache_directories:
+    - ~/dependencies
+    - ~/.mix
+    - _build
+    - deps
+  pre:
+    - ./script/circle_pre_build.sh
+    - mix deps.get
+    - mix deps.compile
+    - mix compile --force
+test:
+  override:
+    - mix test
