@@ -46,8 +46,7 @@ defmodule Zuppler.Mixfile do
     [files: ["lib", "priv", "mix.exs", "README.md", "LICENSE"],
      maintainers: ["Silviu Rosu"],
      licenses: ["Apache 2.0"],
-     links: %{"GitHub" => "https://github.com/zuppler/zuppler-elixir.git",
-              "Docs" => ""}
+     links: %{"GitHub" => "https://github.com/zuppler/zuppler-elixir.git"}
     ]
   end
 end
