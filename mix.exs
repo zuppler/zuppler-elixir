@@ -25,6 +25,7 @@ defmodule Zuppler.Mixfile do
       {:httpoison, "~> 0.11.0"},
       {:poison, "~> 3.0"},
       {:mix_test_watch, "~> 0.2.6", only: :dev},
+      {:dialyxir, "~> 0.4", only: [:dev], runtime: false},
       {:exvcr, "~> 0.8.1", only: :test},
       {:ex_doc, ">= 0.13.0", only: [:dev]}
    ]

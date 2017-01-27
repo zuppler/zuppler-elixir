@@ -1,52 +1,59 @@
 defmodule Zuppler.Restaurant do
   @moduledoc """
-  Zupper Restaurant
+  Zupper Restaurant Wrapper
   """
   @enforce_keys [:permalink, :name]
   defstruct [:amenities, :cuisines, :permalink, :locations, :name]
+
+  @type t :: %__MODULE__{name: String.t, permalink: String.t,
+                         amenities: String.t, cuisines: String.t,
+                         locations: list(Zuppler.Address.t)}
 
   alias Zuppler.Utilities.DataConvertor
 
   @doc """
   Load Zuppler Retaurant by graphql query
-  Ex:
-  Zuppler.Restaurant.find(
-    {
-      restaurant(permalink: "demorestaurant") {
-        name
-        permalink
-        cuisines
-        amenities
-        locations {
-          id
-          city
-          country
-          state
-          geo {
-            lat
-            lng
+
+  ## Example
+      Zuppler.Restaurant.find(\"\"\"
+        {
+          restaurant(permalink: "demorestaurant") {
+            name
+            permalink
+            cuisines
+            amenities
+            locations {
+              id
+              city
+              country
+              state
+              geo {
+                lat
+                lng
+              }
+            }
           }
         }
-      }
-    }
-  )
+        \"\"\"
+      )
   should return something like this:
 
-  {:ok, %Zuppler.Restaurant{amenities: "Online Orders, Cocktail, Air Condition (A/C), Late Night",
-    cuisines: "Continental, Pizza, Seafood",
-    locations: [%Zuppler.Address{city: "Norristown", country: nil,
-        geo: %Zuppler.Address.Geo{lat: 40.14543, lng: -75.393859}, id: "685",
-        state: "PA"},
-      %Zuppler.Address{city: "Conshohocken", country: "US",
-        geo: %Zuppler.Address.Geo{lat: 40.074143, lng: -75.292784}, id: "757230",
-        state: "PA"}],
-    name: "demo", permalink: "demorestaurant"}
-  }
+      {:ok, %Zuppler.Restaurant{amenities: "Online Orders, Cocktail, Air Condition (A/C), Late Night",
+        cuisines: "Continental, Pizza, Seafood",
+        locations: [%Zuppler.Address{city: "Norristown", country: nil,
+            geo: %Zuppler.Address.Geo{lat: 40.14543, lng: -75.393859}, id: "685",
+            state: "PA"},
+          %Zuppler.Address{city: "Conshohocken", country: "US",
+            geo: %Zuppler.Address.Geo{lat: 40.074143, lng: -75.292784}, id: "757230",
+            state: "PA"}],
+        name: "demo", permalink: "demorestaurant"}
+      }
 
   or
 
-  {:error, message}
+      {:error, message}
   """
+  @spec find(String.t) :: {:ok, %{}} | {:error, String.t}
   def find(query) do
     headers = ["Content-type": "application/json"]
     body = Poison.encode!(%{query: query})
@@ -66,6 +73,7 @@ defmodule Zuppler.Restaurant do
     end
   end
 
+  @spec restaurant_url :: String.t
   defp restaurant_url do
     config = Application.get_env(:zuppler_elixir, Zuppler.Endpoint)
     config[:restaurant_url]
