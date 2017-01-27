@@ -11,6 +11,12 @@ First add zuppler_elixir to your `mix.exs` dependecies:
 ```
 
 and run `$ mix deps.get`.
+Then you need to setup the production url for zuppler endpoint. In `config/prod.exs` add:
+
+```elixir
+config :zuppler_elixir, Zuppler.Endpoint,
+  restaurant_url: "production_url"
+```
 
 ## Available resouces in this package
 
