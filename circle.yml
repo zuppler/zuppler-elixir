@@ -1,18 +1,17 @@
 machine:
   environment:
-    PATH: "$HOME/dependencies/erlang/bin:$HOME/dependencies/elixir/bin:$PATH"
-    MIX_ENV: test
+    PATH: "$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
+
 dependencies:
   cache_directories:
-    - ~/dependencies
-    - ~/.mix
-    - _build
-    - deps
+    — ~/.asdf
+    — deps
+    — _build
   pre:
-    - ./script/circle_pre_build.sh
-    - mix deps.get
-    - mix deps.compile
-    - mix compile --force
+    — ./circle_pre_build.sh
+    — mix deps.compile
+    — mix compile
+
 test:
   override:
-    - mix test
+    — mix test
