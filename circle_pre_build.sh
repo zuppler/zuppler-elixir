@@ -14,11 +14,14 @@ asdf plugin-add elixir https://github.com/HashNuke/asdf-elixir.git
 # Write .tool-versions
 echo "erlang $erlang_version" >> .tool-versions
 echo "elixir $elixir_version" >> .tool-versions
+
 # Install erlang/elixir
 asdf install erlang $erlang_version
 asdf install elixir $elixir_version
+
 # Get dependencies
 yes | mix deps.get
 mix local.rebar
+
 # Exit successfully
 exit 0
