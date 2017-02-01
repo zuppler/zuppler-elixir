@@ -36,7 +36,18 @@ defmodule Zuppler.Utilities.DataConvertor do
   @spec convert(%{optional(any) => any}) :: Zuppler.Restaurant.t
   def convert(map) do
     restaurant = struct(Zuppler.Restaurant, map)
-    Map.put(restaurant, :locations, Enum.map(restaurant.locations, &addr_convert(&1)) )
+                 |> add_locations
+                 |> add_services
+  end
+
+  defp add_locations(%Zuppler.Restaurant{locations: nil} = restaurant), do: restaurant
+  defp add_locations(%Zuppler.Restaurant{locations: locations} = restaurant) do
+    Map.put(restaurant, :locations, Enum.map(locations, &addr_convert(&1)) )
+  end
+
+  defp add_services(%Zuppler.Restaurant{services: nil} = restaurant), do: restaurant
+  defp add_services(%Zuppler.Restaurant{services: services} = restaurant) do
+    Map.put(restaurant, :services, Enum.map(services, &service_convert(&1)) )
   end
 
   @spec addr_convert(%{optional(any) => any}) :: Zuppler.Address.t
@@ -48,5 +59,10 @@ defmodule Zuppler.Utilities.DataConvertor do
   @spec geo_convert(%{lat: float, lng: float}) :: Zuppler.Address.Geo.t
   defp geo_convert(geo) do
     struct(Zuppler.Address.Geo, geo)
+  end
+
+  @spec service_convert(%{optional(any) => any}) :: Zuppler.Service.t
+  defp service_convert(srv) do
+    struct(Zuppler.Service, srv)
   end
 end

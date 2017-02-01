@@ -25,6 +25,9 @@ defmodule Zuppler.RestaurantTest do
               lng
             }
           }
+          services {
+            id
+          }
         }
       }
       """

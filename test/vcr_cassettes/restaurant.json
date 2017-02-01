@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "{\"query\":\"{\\n  restaurant(permalink: \\\"demorestaurant\\\") {\\n    name\\n    permalink\\n    cuisines\\n    amenities\\n    locations {\\n      id\\n      city\\n      country\\n      state\\n      geo {\\n        lat\\n        lng\\n      }\\n    }\\n  }\\n}\\n\"}",
+      "body": "{\"query\":\"{\\n  restaurant(permalink: \\\"demorestaurant\\\") {\\n    name\\n    permalink\\n    cuisines\\n    amenities\\n    locations {\\n      id\\n      city\\n      country\\n      state\\n      geo {\\n        lat\\n        lng\\n      }\\n    }\\n    services {\\n      id\\n    }\\n  }\\n}\\n\"}",
       "headers": {
         "Content-type": "application/json"
       },
@@ -11,19 +11,19 @@
       "url": "http://restaurants.api.biznettechnologies.com/graphql"
     },
     "response": {
-      "body": "{\"data\":{\"restaurant\":{\"permalink\":\"demorestaurant\",\"name\":\"demo\",\"locations\":[{\"state\":\"PA\",\"id\":\"685\",\"geo\":{\"lng\":-75.393859,\"lat\":40.14543},\"country\":null,\"city\":\"Norristown\"},{\"state\":\"PA\",\"id\":\"350\",\"geo\":{\"lng\":-75.516085,\"lat\":40.134154},\"country\":null,\"city\":\"Phoenixville\"},{\"state\":\"PA\",\"id\":\"26136\",\"geo\":{\"lng\":-75.30599,\"lat\":40.074178},\"country\":null,\"city\":\"Conshohocken\"},{\"state\":\"PA\",\"id\":\"31326\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"},{\"state\":\"IL\",\"id\":\"98906\",\"geo\":{\"lng\":-92.49068,\"lat\":45.569556},\"country\":null,\"city\":\"Chicago,\"},{\"state\":\"PA \",\"id\":\"98909\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"},{\"state\":\"DC\",\"id\":\"233833\",\"geo\":{\"lng\":-77.030095,\"lat\":38.908213},\"country\":null,\"city\":\"Washington\"},{\"state\":\"PA\",\"id\":\"757230\",\"geo\":{\"lng\":-75.292784,\"lat\":40.074143},\"country\":\"US\",\"city\":\"Conshohocken\"}],\"cuisines\":\"Continental, Pizza, Seafood\",\"amenities\":\"Online Orders, Cocktail, Air Condition (A/C), Late Night, Coupons, Delivery, (Mon - Thu) Dinner Delivery Only, Carry Out, Pick Up\"}}}",
+      "body": "{\"data\":{\"restaurant\":{\"services\":[{\"id\":\"CURBSIDE\"},{\"id\":\"PICKUP\"},{\"id\":\"DELIVERY\"}],\"permalink\":\"demorestaurant\",\"name\":\"demo\",\"locations\":[{\"state\":\"PA\",\"id\":\"685\",\"geo\":{\"lng\":-75.393859,\"lat\":40.14543},\"country\":null,\"city\":\"Norristown\"},{\"state\":\"PA\",\"id\":\"350\",\"geo\":{\"lng\":-75.516085,\"lat\":40.134154},\"country\":null,\"city\":\"Phoenixville\"},{\"state\":\"PA\",\"id\":\"26136\",\"geo\":{\"lng\":-75.30599,\"lat\":40.074178},\"country\":null,\"city\":\"Conshohocken\"},{\"state\":\"PA\",\"id\":\"31326\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"},{\"state\":\"IL\",\"id\":\"98906\",\"geo\":{\"lng\":-92.49068,\"lat\":45.569556},\"country\":null,\"city\":\"Chicago,\"},{\"state\":\"PA \",\"id\":\"98909\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"},{\"state\":\"DC\",\"id\":\"233833\",\"geo\":{\"lng\":-77.030095,\"lat\":38.908213},\"country\":null,\"city\":\"Washington\"},{\"state\":\"PA\",\"id\":\"757230\",\"geo\":{\"lng\":-75.292784,\"lat\":40.074143},\"country\":\"US\",\"city\":\"Conshohocken\"}],\"cuisines\":\"Continental, Pizza, Seafood\",\"amenities\":\"Online Orders, Cocktail, Air Condition (A/C), Late Night, Coupons, Delivery, (Mon - Thu) Dinner Delivery Only, Carry Out, Pick Up\"}}}",
       "headers": {
-        "Connection": "keep-alive",
         "Server": "Cowboy",
-        "Date": "Thu, 26 Jan 2017 09:40:52 GMT",
-        "Content-Length": "1103",
+        "Date": "Wed, 01 Feb 2017 14:44:47 GMT",
+        "Content-Length": "1168",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "30c769e7-eaa1-4c41-8f6c-a4a1d7811c8e",
+        "X-Request-Id": "d3357b0f-01bb-4392-ae24-fe3dba8b4937",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Expose-Headers": "",
         "Access-Control-Allow-Credentials": "true",
         "Content-Type": "application/json; charset=utf-8",
-        "Via": "1.1 vegur"
+        "Via": "1.1 vegur",
+        "Connection": "keep-alive"
       },
       "status_code": 200,
       "type": "ok"
