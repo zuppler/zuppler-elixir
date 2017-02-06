@@ -1,7 +1,7 @@
 defmodule Zuppler.Utilities.DataConvertor do
   @moduledoc """
   Data Convertor module
-  Used to convert from map to Zuppler.Restaurant struct
+  Used to convert from map to Restaurant struct
   """
 
   @doc """
@@ -33,32 +33,36 @@ defmodule Zuppler.Utilities.DataConvertor do
         ]
       }
   """
-  @spec convert(%{optional(any) => any}) :: Zuppler.Restaurant.t
+
+  alias Zuppler.Restaurant
+  alias Zuppler.Address
+
+  @spec convert(%{optional(any) => any}) :: Restaurant.t
   def convert(map) do
-    restaurant = struct(Zuppler.Restaurant, map)
+    restaurant = struct(Restaurant, map)
                  |> add_locations
                  |> add_services
   end
 
-  defp add_locations(%Zuppler.Restaurant{locations: nil} = restaurant), do: restaurant
-  defp add_locations(%Zuppler.Restaurant{locations: locations} = restaurant) do
+  defp add_locations(%Restaurant{locations: nil} = restaurant), do: restaurant
+  defp add_locations(%Restaurant{locations: locations} = restaurant) do
     Map.put(restaurant, :locations, Enum.map(locations, &addr_convert(&1)) )
   end
 
-  defp add_services(%Zuppler.Restaurant{services: nil} = restaurant), do: restaurant
-  defp add_services(%Zuppler.Restaurant{services: services} = restaurant) do
+  defp add_services(%Restaurant{services: nil} = restaurant), do: restaurant
+  defp add_services(%Restaurant{services: services} = restaurant) do
     Map.put(restaurant, :services, Enum.map(services, &service_convert(&1)) )
   end
 
-  @spec addr_convert(%{optional(any) => any}) :: Zuppler.Address.t
+  @spec addr_convert(%{optional(any) => any}) :: Address.t
   defp addr_convert(adr) do
     new_adr = Map.put(adr, :geo, geo_convert(adr.geo) )
-    struct(Zuppler.Address, new_adr)
+    struct(Address, new_adr)
   end
 
-  @spec geo_convert(%{lat: float, lng: float}) :: Zuppler.Address.Geo.t
+  @spec geo_convert(%{lat: float, lng: float}) :: Address.Geo.t
   defp geo_convert(geo) do
-    struct(Zuppler.Address.Geo, geo)
+    struct(Address.Geo, geo)
   end
 
   @spec service_convert(%{optional(any) => any}) :: Zuppler.Service.t

@@ -8,7 +8,8 @@ defmodule Zuppler.Restaurant do
   @type t :: %__MODULE__{name: String.t, permalink: String.t,
                          amenities: String.t, cuisines: String.t,
                          services: list(Zuppler.Service.t),
-                         locations: list(Zuppler.Address.t)}
+                         locations: list(Zuppler.Address.t),
+                         locale: String.t}
 
   alias Zuppler.Utilities.DataConvertor
 
@@ -74,7 +75,7 @@ defmodule Zuppler.Restaurant do
     end
   end
 
-  @spec restaurant_url :: String.t
+  @spec restaurant_url() :: String.t
   defp restaurant_url do
     config = Application.get_env(:zuppler_elixir, Zuppler.Endpoint)
     config[:restaurant_url]
