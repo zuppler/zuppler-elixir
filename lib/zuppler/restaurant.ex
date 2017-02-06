@@ -3,7 +3,7 @@ defmodule Zuppler.Restaurant do
   Zupper Restaurant Wrapper
   """
   @enforce_keys [:permalink, :name]
-  defstruct [:amenities, :cuisines, :permalink, :locations, :name, :services]
+  defstruct [:amenities, :cuisines, :permalink, :locations, :name, :services, :locale]
 
   @type t :: %__MODULE__{name: String.t, permalink: String.t,
                          amenities: String.t, cuisines: String.t,
