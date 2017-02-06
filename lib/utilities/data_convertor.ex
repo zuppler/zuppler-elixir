@@ -39,9 +39,9 @@ defmodule Zuppler.Utilities.DataConvertor do
 
   @spec convert(%{optional(any) => any}) :: Restaurant.t
   def convert(map) do
-    restaurant = struct(Restaurant, map)
-                 |> add_locations
-                 |> add_services
+    struct(Restaurant, map)
+    |> add_locations
+    |> add_services
   end
 
   defp add_locations(%Restaurant{locations: nil} = restaurant), do: restaurant
