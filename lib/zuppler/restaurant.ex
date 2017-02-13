@@ -78,6 +78,6 @@ defmodule Zuppler.Restaurant do
   @spec restaurant_url() :: String.t
   defp restaurant_url do
     config = Application.get_env(:zuppler_elixir, Zuppler.Endpoint)
-    config[:restaurant_url]
+    config[:restaurants_url] <> config[:graphql_endpoint]
   end
 end
