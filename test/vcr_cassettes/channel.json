@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "{\"query\":\"{\\n  channel(permalink: \\\"swissfarms\\\") {\\n    name\\n    permalink\\n    url\\n    menu_url\\n    disabled\\n    searchable\\n    integrations(id: 3115){\\n      restaurant_location_id\\n    }\\n  }\\n}\\n\"}",
+      "headers": {
+        "Content-type": "application/json"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "http://restaurants.api.biznettechnologies.com/graphql"
+    },
+    "response": {
+      "body": "{\"data\":{\"channel\":{\"url\":\"http://swissfarms.com\",\"searchable\":false,\"permalink\":\"swissfarms\",\"name\":\"Swiss Farms\",\"menu_url\":\"http://swissfarms.com/online-ordering\",\"integrations\":[{\"restaurant_location_id\":1694}],\"disabled\":null}}}",
+      "headers": {
+        "Server": "Cowboy",
+        "Date": "Tue, 14 Feb 2017 11:08:11 GMT",
+        "Content-Length": "233",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "ec4cc2d9-73eb-4cba-be5b-9e9544ed2dff",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Expose-Headers": "",
+        "Access-Control-Allow-Credentials": "true",
+        "Vary": "",
+        "Content-Type": "application/json; charset=utf-8",
+        "Via": "1.1 vegur",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

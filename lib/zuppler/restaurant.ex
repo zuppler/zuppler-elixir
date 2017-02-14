@@ -55,7 +55,7 @@ defmodule Zuppler.Restaurant do
 
       {:error, message}
   """
-  @spec find(String.t) :: {:ok, %{}} | {:error, String.t}
+  @spec find(String.t) :: {:ok, %__MODULE__{}} | {:error, String.t}
   def find(query) do
     headers = ["Content-type": "application/json"]
     body = Poison.encode!(%{query: query})

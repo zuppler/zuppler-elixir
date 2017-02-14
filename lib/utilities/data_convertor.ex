@@ -36,6 +36,8 @@ defmodule Zuppler.Utilities.DataConvertor do
 
   alias Zuppler.Restaurant
   alias Zuppler.Address
+  alias Zuppler.Channel
+  alias Zuppler.Integration
 
   @spec convert(%{optional(any) => any}) :: Restaurant.t
   def convert(map) do
@@ -68,5 +70,16 @@ defmodule Zuppler.Utilities.DataConvertor do
   @spec service_convert(%{optional(any) => any}) :: Zuppler.Service.t
   defp service_convert(srv) do
     struct(Zuppler.Service, srv)
+  end
+
+  @spec convert_channel(%{optional(any) => any}) :: Channel.t
+  def convert_channel(map) do
+    struct(Channel, map)
+    |> add_integrations
+  end
+
+  defp add_integrations(%Channel{integrations: nil} = channel), do: channel
+  defp add_integrations(%Channel{integrations: integrations} = channel) do
+    Map.put(channel, :integrations, Enum.map(integrations, &struct(Integration, &1)) )
   end
 end
