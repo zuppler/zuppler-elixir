@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "{\"query\":\"{\\n  channel(permalink: \\\"swissfarms\\\") {\\n    name\\n    permalink\\n    url\\n    menu_url\\n    disabled\\n    searchable\\n    integrations(id: 3115){\\n      restaurant_location_id\\n    }\\n  }\\n}\\n\"}",
+      "body": "{\"variables\":{\"permalink\":\"swissfarms\",\"id\":3115},\"query\":\"  query ChannelWithIntegration($permalink: String, $id: ID) {\\n      channel(permalink: $permalink) {\\n        name\\n        permalink\\n        url\\n        disabled\\n        searchable\\n        integrations(id: $id){\\n          restaurant_location_id\\n          restaurant_id\\n        }\\n      }\\n   }\\n\"}",
       "headers": {
         "Content-type": "application/json"
       },
@@ -11,13 +11,13 @@
       "url": "http://restaurants.api.biznettechnologies.com/graphql"
     },
     "response": {
-      "body": "{\"data\":{\"channel\":{\"url\":\"http://swissfarms.com\",\"searchable\":false,\"permalink\":\"swissfarms\",\"name\":\"Swiss Farms\",\"menu_url\":\"http://swissfarms.com/online-ordering\",\"integrations\":[{\"restaurant_location_id\":1694}],\"disabled\":null}}}",
+      "body": "{\"data\":{\"channel\":{\"url\":\"http://swissfarms.com\",\"searchable\":false,\"permalink\":\"swissfarms\",\"name\":\"Swiss Farms\",\"integrations\":[{\"restaurant_location_id\":1694,\"restaurant_id\":775}],\"disabled\":null}}}",
       "headers": {
         "Server": "Cowboy",
-        "Date": "Tue, 14 Feb 2017 11:08:11 GMT",
-        "Content-Length": "233",
+        "Date": "Tue, 14 Feb 2017 15:32:45 GMT",
+        "Content-Length": "202",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "ec4cc2d9-73eb-4cba-be5b-9e9544ed2dff",
+        "X-Request-Id": "7051e3e4-e76e-4cbc-b03d-7e59b5a6e46d",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Expose-Headers": "",
         "Access-Control-Allow-Credentials": "true",

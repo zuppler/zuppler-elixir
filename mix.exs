@@ -1,7 +1,7 @@
 defmodule Zuppler.Mixfile do
   use Mix.Project
 
-  @version "0.0.5"
+  @version "0.0.7"
 
   def project do
     [app: :zuppler_elixir,

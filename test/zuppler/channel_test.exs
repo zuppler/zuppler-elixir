@@ -12,11 +12,11 @@ defmodule Zuppler.ChannelTest do
           name
           permalink
           url
-          menu_url
           disabled
           searchable
           integrations(id: $id){
             restaurant_location_id
+            restaurant_id
           }
         }
      }
@@ -35,6 +35,7 @@ defmodule Zuppler.ChannelTest do
       assert(channel.name == "Swiss Farms")
       i = channel.integrations |> List.first
       assert(i.restaurant_location_id == 1694)
+      assert(i.restaurant_id == 775)
     end
   end
 end

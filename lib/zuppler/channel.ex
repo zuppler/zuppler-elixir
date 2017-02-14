@@ -2,19 +2,40 @@ defmodule Zuppler.Channel do
   @moduledoc """
   Zuppler Channel Wrapper
   """
-  defstruct [:name, :permalink, :integration, :url, :zuppler_commission_id, :menu_url,
-             :mobile_menu_url, :owner_id, :secret, :use_external_account, :commission_id,
-             :no_restaurant_ambassador, :login_required, :disabled, :searchable, :integrations]
+  defstruct [:name, :permalink, :url, :login_required,
+             :disabled, :searchable, :integrations]
 
   @type t :: %__MODULE__{
-    name: String.t, permalink: String.t, integration: boolean, url: String.t,
-    menu_url: String.t, mobile_menu_url: String.t, use_external_account: boolean,
-    commission_id: integer, login_required: boolean, disabled: boolean,
+    name: String.t, permalink: String.t, url: String.t,
+    login_required: boolean, disabled: boolean,
     searchable: boolean, integrations: [Integration.t]
   }
 
   alias Zuppler.Utilities.DataConvertor
 
+  @doc """
+    Get info about channel and integrations
+    Ex:
+
+    query =  \"\"\"
+      query ChannelWithIntegration($permalink: String, $id: ID) {
+          channel(permalink: $permalink) {
+            name
+            permalink
+            url
+            disabled
+            searchable
+            integrations(id: $id){
+              restaurant_location_id
+              restaurant_id
+            }
+          }
+      }
+    \"\"\"
+    variables = %{permalink: "swissfarms", id: 3115}
+
+    Zuppler.Channel.find(query, variables)
+  """
   @spec find(String.t, nil | map) :: {:ok, %__MODULE__{}} | {:error, String.t}
   def find(query, variables \\ nil) do
     headers = ["Content-type": "application/json"]
