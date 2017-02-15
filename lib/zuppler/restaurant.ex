@@ -19,9 +19,9 @@ defmodule Zuppler.Restaurant do
   ## Example
       Zuppler.Restaurant.find(\"\"\"
         {
-          restaurant(permalink: "demorestaurant") {
+          restaurant(id: 242) {
             name
-            permalink
+            id
             cuisines
             amenities
             locations {

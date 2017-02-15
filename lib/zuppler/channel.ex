@@ -18,21 +18,21 @@ defmodule Zuppler.Channel do
     Ex:
 
     query =  \"\"\"
-      query ChannelWithIntegration($permalink: String, $id: ID) {
-          channel(permalink: $permalink) {
+      query ChannelWithIntegration($id: ID, $remote_id: String) {
+          channel(id: $id) {
             name
             permalink
             url
             disabled
             searchable
-            integrations(id: $id){
+            integrations(remote_id: $remote_id){
               restaurant_location_id
               restaurant_id
             }
           }
       }
     \"\"\"
-    variables = %{permalink: "swissfarms", id: 3115}
+    variables = %{id: 121, remote_id: "milwakeeplace"}
 
     Zuppler.Channel.find(query, variables)
   """
@@ -47,7 +47,8 @@ defmodule Zuppler.Channel do
         %{data: %{channel: c}} = Poison.Parser.parse!(data, keys: :atoms)
         channel = DataConvertor.convert_channel(c)
         {:ok, channel}
-      {:ok, %HTTPoison.Response{status_code: 400, body: error_message}} ->
+      {:ok, %HTTPoison.Response{status_code: code, body: error_message}}
+        when code == 400 or code == 500 ->
         {:error, error_message}
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         {:error, "Not found :("}

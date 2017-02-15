@@ -10,7 +10,7 @@ defmodule Zuppler.RestaurantTest do
     use_cassette "restaurant" do
       query = """
       {
-        restaurant(permalink: "demorestaurant") {
+        restaurant(id: 242) {
           name
           permalink
           cuisines

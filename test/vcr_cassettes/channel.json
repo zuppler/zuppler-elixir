@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "{\"variables\":{\"permalink\":\"swissfarms\",\"id\":3115},\"query\":\"  query ChannelWithIntegration($permalink: String, $id: ID) {\\n      channel(permalink: $permalink) {\\n        name\\n        permalink\\n        url\\n        disabled\\n        searchable\\n        integrations(id: $id){\\n          restaurant_location_id\\n          restaurant_id\\n        }\\n      }\\n   }\\n\"}",
+      "body": "{\"variables\":{\"remote_id\":\"milmontpark\",\"id\":121},\"query\":\"  query ChannelWithIntegration($id: ID, $remote_id: String) {\\n      channel(id: $id) {\\n        name\\n        permalink\\n        url\\n        disabled\\n        searchable\\n        integrations(remote_id: $remote_id){\\n          restaurant_location_id\\n          restaurant_id\\n        }\\n      }\\n   }\\n\"}",
       "headers": {
         "Content-type": "application/json"
       },
@@ -11,13 +11,13 @@
       "url": "http://restaurants.api.biznettechnologies.com/graphql"
     },
     "response": {
-      "body": "{\"data\":{\"channel\":{\"url\":\"http://swissfarms.com\",\"searchable\":false,\"permalink\":\"swissfarms\",\"name\":\"Swiss Farms\",\"integrations\":[{\"restaurant_location_id\":1694,\"restaurant_id\":775}],\"disabled\":null}}}",
+      "body": "{\"data\":{\"channel\":{\"url\":\"http://swissfarms.com\",\"searchable\":false,\"permalink\":\"swissfarms\",\"name\":\"Swiss Farms\",\"integrations\":[{\"restaurant_location_id\":739,\"restaurant_id\":775}],\"disabled\":null}}}",
       "headers": {
         "Server": "Cowboy",
-        "Date": "Tue, 14 Feb 2017 15:32:45 GMT",
-        "Content-Length": "202",
+        "Date": "Wed, 15 Feb 2017 11:07:50 GMT",
+        "Content-Length": "201",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "7051e3e4-e76e-4cbc-b03d-7e59b5a6e46d",
+        "X-Request-Id": "6fb1522c-69da-421a-8642-7b9d05324cc9",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Expose-Headers": "",
         "Access-Control-Allow-Credentials": "true",
