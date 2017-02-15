@@ -1,4 +1,7 @@
 defmodule Zuppler.DeliveryInfo do
+  @moduledoc """
+  Loads the delivery info for restaurant and address
+  """
   require Logger
   defstruct [:min_order_amount, :limit_order_amount, :charge_amount, :charge_percent, :time]
 
@@ -37,7 +40,7 @@ defmodule Zuppler.DeliveryInfo do
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         {:error, "Not found :("}
       {:error, %HTTPoison.Error{reason: reason}} ->
-        {:error, IO.inspect reason}
+        {:error, inspect(reason)}
     end
   end
 

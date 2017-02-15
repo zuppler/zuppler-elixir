@@ -53,7 +53,7 @@ defmodule Zuppler.Channel do
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         {:error, "Not found :("}
       {:error, %HTTPoison.Error{reason: reason}} ->
-        {:error, IO.inspect reason}
+        {:error, inspect(reason)}
     end
   end
 

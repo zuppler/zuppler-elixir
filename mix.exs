@@ -27,7 +27,8 @@ defmodule Zuppler.Mixfile do
       {:mix_test_watch, "~> 0.2.6", only: :dev},
       {:dialyxir, "~> 0.4", only: [:dev], runtime: false},
       {:exvcr, "~> 0.8.1", only: :test},
-      {:ex_doc, ">= 0.13.0", only: [:dev]}
+      {:ex_doc, ">= 0.13.0", only: [:dev]},
+      {:dogma, "~> 0.1", only: :dev}
    ]
   end
 

@@ -41,24 +41,25 @@ defmodule Zuppler.Utilities.DataConvertor do
 
   @spec convert(%{optional(any) => any}) :: Restaurant.t
   def convert(map) do
-    struct(Restaurant, map)
+    Restaurant
+    |> struct(map)
     |> add_locations
     |> add_services
   end
 
   defp add_locations(%Restaurant{locations: nil} = restaurant), do: restaurant
   defp add_locations(%Restaurant{locations: locations} = restaurant) do
-    Map.put(restaurant, :locations, Enum.map(locations, &addr_convert(&1)) )
+    Map.put(restaurant, :locations, Enum.map(locations, &addr_convert(&1)))
   end
 
   defp add_services(%Restaurant{services: nil} = restaurant), do: restaurant
   defp add_services(%Restaurant{services: services} = restaurant) do
-    Map.put(restaurant, :services, Enum.map(services, &service_convert(&1)) )
+    Map.put(restaurant, :services, Enum.map(services, &service_convert(&1)))
   end
 
   @spec addr_convert(%{optional(any) => any}) :: Address.t
   defp addr_convert(adr) do
-    new_adr = Map.put(adr, :geo, geo_convert(adr.geo) )
+    new_adr = Map.put(adr, :geo, geo_convert(adr.geo))
     struct(Address, new_adr)
   end
 
@@ -74,12 +75,13 @@ defmodule Zuppler.Utilities.DataConvertor do
 
   @spec convert_channel(%{optional(any) => any}) :: Channel.t
   def convert_channel(map) do
-    struct(Channel, map)
+    Channel
+    |> struct(map)
     |> add_integrations
   end
 
   defp add_integrations(%Channel{integrations: nil} = channel), do: channel
   defp add_integrations(%Channel{integrations: integrations} = channel) do
-    Map.put(channel, :integrations, Enum.map(integrations, &struct(Integration, &1)) )
+    Map.put(channel, :integrations, Enum.map(integrations, &struct(Integration, &1)))
   end
 end
