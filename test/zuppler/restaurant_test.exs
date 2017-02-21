@@ -17,12 +17,14 @@ defmodule Zuppler.RestaurantTest do
           amenities
           locations {
             id
-            city
-            country
-            state
-            geo {
-              lat
-              lng
+            address {
+              city
+              country
+              state
+              geo {
+                lat
+                lng
+              }
             }
           }
           services {

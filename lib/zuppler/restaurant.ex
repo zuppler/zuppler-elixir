@@ -8,7 +8,7 @@ defmodule Zuppler.Restaurant do
   @type t :: %__MODULE__{name: String.t, permalink: String.t,
                          amenities: String.t, cuisines: String.t,
                          services: list(Zuppler.Service.t),
-                         locations: list(Zuppler.Address.t),
+                         locations: list(Zuppler.Location.t),
                          locale: String.t}
 
   alias Zuppler.Utilities.DataConvertor
@@ -26,12 +26,14 @@ defmodule Zuppler.Restaurant do
             amenities
             locations {
               id
-              city
-              country
-              state
-              geo {
-                lat
-                lng
+              address {
+                city
+                country
+                state
+                geo {
+                  lat
+                  lng
+                }
               }
             }
           }
@@ -42,12 +44,20 @@ defmodule Zuppler.Restaurant do
 
       {:ok, %Zuppler.Restaurant{amenities: "Online Orders, Cocktail, Air Condition (A/C), Late Night",
         cuisines: "Continental, Pizza, Seafood",
-        locations: [%Zuppler.Address{city: "Norristown", country: nil,
-            geo: %Zuppler.Address.Geo{lat: 40.14543, lng: -75.393859}, id: "685",
-            state: "PA"},
-          %Zuppler.Address{city: "Conshohocken", country: "US",
-            geo: %Zuppler.Address.Geo{lat: 40.074143, lng: -75.292784}, id: "757230",
-            state: "PA"}],
+        locations: [
+          %Zuppler.Location{
+            id: 1,
+            %Zuppler.Address{city: "Norristown", country: nil,
+              geo: %Zuppler.Address.Geo{lat: 40.14543, lng: -75.393859}, id: "685",
+              state: "PA"}
+          },
+          %Zuppler.Location{
+            id: 2,
+            %Zuppler.Address{city: "Conshohocken", country: "US",
+              geo: %Zuppler.Address.Geo{lat: 40.074143, lng: -75.292784}, id: "757230",
+              state: "PA"}
+          }
+          ],
         name: "demo", permalink: "demorestaurant"}
       }
 

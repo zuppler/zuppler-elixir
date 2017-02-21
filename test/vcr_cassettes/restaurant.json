@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "{\"query\":\"{\\n  restaurant(id: 242) {\\n    name\\n    permalink\\n    cuisines\\n    amenities\\n    locations {\\n      id\\n      city\\n      country\\n      state\\n      geo {\\n        lat\\n        lng\\n      }\\n    }\\n    services {\\n      id\\n    }\\n  }\\n}\\n\"}",
+      "body": "{\"query\":\"{\\n  restaurant(id: 242) {\\n    name\\n    permalink\\n    cuisines\\n    amenities\\n    locations {\\n      id\\n      address {\\n        city\\n        country\\n        state\\n        geo {\\n          lat\\n          lng\\n        }\\n      }\\n    }\\n    services {\\n      id\\n    }\\n  }\\n}\\n\"}",
       "headers": {
         "Content-type": "application/json"
       },
@@ -11,13 +11,13 @@
       "url": "http://restaurants.api.biznettechnologies.com/graphql"
     },
     "response": {
-      "body": "{\"data\":{\"restaurant\":{\"services\":[{\"id\":\"PICKUP\"},{\"id\":\"DELIVERY\"}],\"permalink\":\"demorestaurant\",\"name\":\"demo\",\"locations\":[{\"state\":\"PA\",\"id\":\"685\",\"geo\":{\"lng\":-75.393859,\"lat\":40.14543},\"country\":null,\"city\":\"Norristown\"},{\"state\":\"PA\",\"id\":\"350\",\"geo\":{\"lng\":-75.516085,\"lat\":40.134154},\"country\":null,\"city\":\"Phoenixville\"},{\"state\":\"PA\",\"id\":\"26136\",\"geo\":{\"lng\":-75.30599,\"lat\":40.074178},\"country\":null,\"city\":\"Conshohocken\"},{\"state\":\"PA\",\"id\":\"31326\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"},{\"state\":\"IL\",\"id\":\"98906\",\"geo\":{\"lng\":-92.49068,\"lat\":45.569556},\"country\":null,\"city\":\"Chicago,\"},{\"state\":\"PA \",\"id\":\"98909\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"},{\"state\":\"DC\",\"id\":\"233833\",\"geo\":{\"lng\":-77.030095,\"lat\":38.908213},\"country\":null,\"city\":\"Washington\"},{\"state\":\"NY\",\"id\":\"757230\",\"geo\":{\"lng\":-75.292784,\"lat\":40.074143},\"country\":\"US\",\"city\":\"Brooklyn\"}],\"cuisines\":\"Continental, Pizza, Seafood\",\"amenities\":\"Online Orders, Cocktail, Air Condition (A/C), Late Night, Coupons, Delivery, (Mon - Thu) Dinner Delivery Only, Carry Out, Pick Up\"}}}",
+      "body": "{\"data\":{\"restaurant\":{\"services\":[{\"id\":\"PICKUP\"},{\"id\":\"DELIVERY\"}],\"permalink\":\"demorestaurant\",\"name\":\"demo\",\"locations\":[{\"id\":\"198\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.516085,\"lat\":40.134154},\"country\":null,\"city\":\"Phoenixville\"}},{\"id\":\"612\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.30599,\"lat\":40.074178},\"country\":null,\"city\":\"Conshohocken\"}},{\"id\":\"621\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"}},{\"id\":\"903\",\"address\":{\"state\":\"IL\",\"geo\":{\"lng\":-92.49068,\"lat\":45.569556},\"country\":null,\"city\":\"Chicago,\"}},{\"id\":\"904\",\"address\":{\"state\":\"PA \",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"}},{\"id\":\"4239\",\"address\":{\"state\":\"NY\",\"geo\":{\"lng\":-75.292784,\"lat\":40.074143},\"country\":\"US\",\"city\":\"Brooklyn\"}}],\"cuisines\":\"Continental, Pizza, Seafood\",\"amenities\":\"Online Orders, Cocktail, Air Condition (A/C), Late Night, Coupons, Delivery, (Mon - Thu) Dinner Delivery Only, Carry Out, Pick Up\"}}}",
       "headers": {
         "Server": "Cowboy",
-        "Date": "Wed, 15 Feb 2017 11:07:51 GMT",
-        "Content-Length": "1146",
+        "Date": "Tue, 21 Feb 2017 12:08:19 GMT",
+        "Content-Length": "1002",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "ee87960e-d684-400c-99c0-229f3000efa8",
+        "X-Request-Id": "f80c568c-404a-4d50-9251-ecf964e08ce5",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Expose-Headers": "",
         "Access-Control-Allow-Credentials": "true",

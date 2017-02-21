@@ -13,10 +13,19 @@ defmodule Zuppler.Utilities.DataConvertor do
         name: "demo", permalink: "demorestaurant",
         amenities: "Online Orders, Cocktail, Air Condition (A/C), Late Night, Coupons",
         cuisines: "Continental, Pizza, Seafood",
-        locations: [%{city: "Norristown", country: nil, id: "685", state: "PA",
-            geo: %{lat: 40.14543, lng: -75.393859}},
-          %{city: "Phoenixville", country: nil, id: "350", state: "PA",
-            geo: %{lat: 40.134154, lng: -75.516085}}
+        locations: [
+          %{
+            id: 1,
+            address:
+              %{city: "Norristown", country: nil, id: "685", state: "PA",
+              geo: %{lat: 40.14543, lng: -75.393859}}
+          },
+          %{
+            id: 2,
+            address:
+              %{city: "Phoenixville", country: nil, id: "350", state: "PA",
+              geo: %{lat: 40.134154, lng: -75.516085}}
+            }
         ]
       }
 
@@ -26,15 +35,25 @@ defmodule Zuppler.Utilities.DataConvertor do
         name: "demo", permalink: "demorestaurant",
         amenities: "Online Orders, Cocktail, Air Condition (A/C), Late Night, Coupons",
         cuisines: "Continental, Pizza, Seafood",
-        locations: [%Zuppler.Address{city: "Norristown", country: nil, id: "685", state: "PA",
-            geo: %Zuppler.Address.Geo{lat: 40.14543, lng: -75.393859}},
-          %Zuppler.Address{city: "Phoenixville", country: nil, id: "350", state: "PA",
-            geo: %Zuppler.Address.Geo{lat: 40.134154, lng: -75.516085}}
+        locations: [
+          %Zuppler.Location{
+            id: 1,
+            address:
+              %Zuppler.Address{city: "Norristown", country: nil, id: "685", state: "PA",
+                geo: %Zuppler.Address.Geo{lat: 40.14543, lng: -75.393859}}
+          },
+          %Zuppler.Location{
+            id: 2,
+            address:
+              %Zuppler.Address{city: "Phoenixville", country: nil, id: "350", state: "PA",
+                geo: %Zuppler.Address.Geo{lat: 40.134154, lng: -75.516085}}
+          }
         ]
       }
   """
 
   alias Zuppler.Restaurant
+  alias Zuppler.Location
   alias Zuppler.Address
   alias Zuppler.Channel
   alias Zuppler.Integration
@@ -49,7 +68,7 @@ defmodule Zuppler.Utilities.DataConvertor do
 
   defp add_locations(%Restaurant{locations: nil} = restaurant), do: restaurant
   defp add_locations(%Restaurant{locations: locations} = restaurant) do
-    Map.put(restaurant, :locations, Enum.map(locations, &addr_convert(&1)))
+    Map.put(restaurant, :locations, Enum.map(locations, &location_convert(&1)))
   end
 
   defp add_services(%Restaurant{services: nil} = restaurant), do: restaurant
@@ -57,8 +76,14 @@ defmodule Zuppler.Utilities.DataConvertor do
     Map.put(restaurant, :services, Enum.map(services, &service_convert(&1)))
   end
 
-  @spec addr_convert(%{optional(any) => any}) :: Address.t
-  defp addr_convert(adr) do
+  @spec location_convert(%{optional(any) => any}) :: Location.t
+  defp location_convert(location) do
+    Map.put(location, :address, address_convert(location.address))
+    struct(Location, location)
+  end
+
+  @spec address_convert(%{optional(any) => any}) :: Address.t
+  defp address_convert(adr) do
     new_adr = Map.put(adr, :geo, geo_convert(adr.geo))
     struct(Address, new_adr)
   end
