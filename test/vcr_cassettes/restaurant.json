@@ -14,10 +14,10 @@
       "body": "{\"data\":{\"restaurant\":{\"services\":[{\"id\":\"PICKUP\"},{\"id\":\"DELIVERY\"}],\"permalink\":\"demorestaurant\",\"name\":\"demo\",\"locations\":[{\"id\":\"198\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.516085,\"lat\":40.134154},\"country\":null,\"city\":\"Phoenixville\"}},{\"id\":\"612\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.30599,\"lat\":40.074178},\"country\":null,\"city\":\"Conshohocken\"}},{\"id\":\"621\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"}},{\"id\":\"903\",\"address\":{\"state\":\"IL\",\"geo\":{\"lng\":-92.49068,\"lat\":45.569556},\"country\":null,\"city\":\"Chicago,\"}},{\"id\":\"904\",\"address\":{\"state\":\"PA \",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"}},{\"id\":\"4239\",\"address\":{\"state\":\"NY\",\"geo\":{\"lng\":-75.292784,\"lat\":40.074143},\"country\":\"US\",\"city\":\"Brooklyn\"}}],\"cuisines\":\"Continental, Pizza, Seafood\",\"amenities\":\"Online Orders, Cocktail, Air Condition (A/C), Late Night, Coupons, Delivery, (Mon - Thu) Dinner Delivery Only, Carry Out, Pick Up\"}}}",
       "headers": {
         "Server": "Cowboy",
-        "Date": "Tue, 21 Feb 2017 12:08:19 GMT",
+        "Date": "Tue, 21 Feb 2017 12:22:42 GMT",
         "Content-Length": "1002",
         "Cache-Control": "max-age=0, private, must-revalidate",
-        "X-Request-Id": "f80c568c-404a-4d50-9251-ecf964e08ce5",
+        "X-Request-Id": "5a101410-f45f-40ae-8831-f5c0757c5987",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Expose-Headers": "",
         "Access-Control-Allow-Credentials": "true",
