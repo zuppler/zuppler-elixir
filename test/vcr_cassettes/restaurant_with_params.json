@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "{\"variables\":{\"id\":242},\"query\":\"query RestaurantById($id: ID) {\\n  restaurant(id: $id) {\\n    name\\n    permalink\\n    cuisines\\n    amenities\\n    locations {\\n      id\\n      address {\\n        city\\n        country\\n        state\\n        geo {\\n          lat\\n          lng\\n        }\\n      }\\n    }\\n    services {\\n      id\\n    }\\n  }\\n}\\n\"}",
+      "headers": {
+        "Content-type": "application/json"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "http://restaurants.api.biznettechnologies.com/graphql"
+    },
+    "response": {
+      "body": "{\"data\":{\"restaurant\":{\"services\":[{\"id\":\"PICKUP\"},{\"id\":\"DELIVERY\"}],\"permalink\":\"demorestaurant\",\"name\":\"demo\",\"locations\":[{\"id\":\"198\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.516085,\"lat\":40.134154},\"country\":null,\"city\":\"Phoenixville\"}},{\"id\":\"612\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.30599,\"lat\":40.074178},\"country\":null,\"city\":\"Conshohocken\"}},{\"id\":\"621\",\"address\":{\"state\":\"PA\",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"}},{\"id\":\"903\",\"address\":{\"state\":\"IL\",\"geo\":{\"lng\":-92.49068,\"lat\":45.569556},\"country\":null,\"city\":\"Chicago,\"}},{\"id\":\"904\",\"address\":{\"state\":\"PA \",\"geo\":{\"lng\":-75.166193,\"lat\":39.952394},\"country\":null,\"city\":\"Philadelphia\"}},{\"id\":\"4239\",\"address\":{\"state\":\"NY\",\"geo\":{\"lng\":-75.292784,\"lat\":40.074143},\"country\":\"US\",\"city\":\"Brooklyn\"}}],\"cuisines\":\"Continental, Pizza, Seafood\",\"amenities\":\"Online Orders, Cocktail, Air Condition (A/C), Late Night, Coupons, Delivery, (Mon - Thu) Dinner Delivery Only, Carry Out, Pick Up\"}}}",
+      "headers": {
+        "Server": "Cowboy",
+        "Date": "Wed, 22 Feb 2017 11:57:07 GMT",
+        "Content-Length": "1002",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "fb92eb4b-2429-491c-8976-e506d22ae416",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Expose-Headers": "",
+        "Access-Control-Allow-Credentials": "true",
+        "Vary": "",
+        "Content-Type": "application/json; charset=utf-8",
+        "Via": "1.1 vegur",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

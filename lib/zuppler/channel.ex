@@ -11,6 +11,7 @@ defmodule Zuppler.Channel do
     searchable: boolean, integrations: [Integration.t]
   }
 
+  require Logger
   alias Zuppler.Utilities.DataConvertor
 
   @doc """
@@ -38,9 +39,13 @@ defmodule Zuppler.Channel do
   """
   @spec find(String.t, nil | map) :: {:ok, %__MODULE__{}} | {:error, String.t}
   def find(query, variables \\ nil) do
+    url = channel_url()
+    Logger.info "Loading channel from #{url} \n with query: #{inspect(query)} \n and variables: #{variables}"
     headers = ["Content-type": "application/json"]
     body = Poison.encode!(construct_body(query, variables))
     response = HTTPoison.post channel_url(), body, headers
+
+    Logger.debug fn -> "Response: #{inspect(response.body)}" end
 
     case response do
       {:ok, %HTTPoison.Response{status_code: 200, body: data}} ->

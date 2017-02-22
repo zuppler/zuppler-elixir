@@ -38,4 +38,55 @@ defmodule Zuppler.RestaurantTest do
       assert(restaurant.name == "demo")
     end
   end
+
+  test "load restaurant with params" do
+    use_cassette "restaurant_with_params" do
+      query = """
+      query RestaurantById($id: ID) {
+        restaurant(id: $id) {
+          name
+          permalink
+          cuisines
+          amenities
+          locations {
+            id
+            address {
+              city
+              country
+              state
+              geo {
+                lat
+                lng
+              }
+            }
+          }
+          services {
+            id
+          }
+        }
+      }
+      """
+      {:ok, restaurant} = Zuppler.Restaurant.find(query, %{id: 242})
+      assert(restaurant.permalink == "demorestaurant")
+      assert(restaurant.name == "demo")
+    end
+  end
+
+  test "load restaurant locations" do
+    use_cassette "restaurant_locations" do
+      query = """
+      {
+        restaurant(id: 242) {
+          locations {
+            id
+          }
+        }
+      }
+      """
+      {:ok, restaurant} = Zuppler.Restaurant.find(query)
+      loc = restaurant.locations |> List.first
+      assert(loc)
+      assert(loc.id)
+    end
+  end
 end

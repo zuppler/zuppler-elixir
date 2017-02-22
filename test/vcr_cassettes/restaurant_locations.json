@@ -1,0 +1,33 @@
+[
+  {
+    "request": {
+      "body": "{\"query\":\"{\\n  restaurant(id: 242) {\\n    locations {\\n      id\\n    }\\n  }\\n}\\n\"}",
+      "headers": {
+        "Content-type": "application/json"
+      },
+      "method": "post",
+      "options": [],
+      "request_body": "",
+      "url": "http://restaurants.api.biznettechnologies.com/graphql"
+    },
+    "response": {
+      "body": "{\"data\":{\"restaurant\":{\"locations\":[{\"id\":\"198\"},{\"id\":\"612\"},{\"id\":\"621\"},{\"id\":\"903\"},{\"id\":\"904\"},{\"id\":\"4239\"}]}}}",
+      "headers": {
+        "Server": "Cowboy",
+        "Date": "Wed, 22 Feb 2017 11:01:25 GMT",
+        "Content-Length": "118",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "3631f80c-9e47-40cf-9a40-c290cd6aed67",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Expose-Headers": "",
+        "Access-Control-Allow-Credentials": "true",
+        "Vary": "",
+        "Content-Type": "application/json; charset=utf-8",
+        "Via": "1.1 vegur",
+        "Connection": "keep-alive"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

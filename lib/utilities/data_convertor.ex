@@ -78,7 +78,10 @@ defmodule Zuppler.Utilities.DataConvertor do
 
   @spec location_convert(%{optional(any) => any}) :: Location.t
   defp location_convert(location) do
-    new_location = Map.put(location, :address, address_convert(location.address))
+    new_location = case Map.get(location, :address) do
+      nil -> location
+      _ -> Map.put(location, :address, address_convert(location.address))
+    end
     struct(Location, new_location)
   end
 

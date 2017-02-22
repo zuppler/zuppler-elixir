@@ -65,10 +65,10 @@ defmodule Zuppler.Restaurant do
 
       {:error, message}
   """
-  @spec find(String.t) :: {:ok, %__MODULE__{}} | {:error, String.t}
-  def find(query) do
+  @spec find(String.t, map | nil) :: {:ok, %__MODULE__{}} | {:error, String.t}
+  def find(query, variables \\ nil) do
     headers = ["Content-type": "application/json"]
-    body = Poison.encode!(%{query: query})
+    body = Poison.encode!(body_content(query, variables))
     response = HTTPoison.post restaurant_url(), body, headers
 
     case response do
@@ -83,6 +83,16 @@ defmodule Zuppler.Restaurant do
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, inspect(reason)}
     end
+  end
+
+  @spec body_content(String.t, nil) :: map
+  defp body_content(query, nil) do
+    %{query: query}
+  end
+
+  @spec body_content(String.t, map) :: map
+  defp body_content(query, variables) do
+    %{query: query, variables: variables}
   end
 
   @spec restaurant_url() :: String.t
