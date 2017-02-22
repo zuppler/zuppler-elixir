@@ -40,7 +40,7 @@ defmodule Zuppler.Channel do
   @spec find(String.t, nil | map) :: {:ok, %__MODULE__{}} | {:error, String.t}
   def find(query, variables \\ nil) do
     url = channel_url()
-    Logger.info "Loading channel from #{url} \n with query: #{inspect(query)} \n and variables: #{variables}"
+    Logger.info "Loading channel from #{url} \n with query: #{inspect(query)} \n and variables: #{inspect(variables)}"
     headers = ["Content-type": "application/json"]
     body = Poison.encode!(construct_body(query, variables))
     response = HTTPoison.post channel_url(), body, headers
