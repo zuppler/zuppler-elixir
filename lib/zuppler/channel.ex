@@ -15,7 +15,35 @@ defmodule Zuppler.Channel do
   alias Zuppler.Utilities.DataConvertor
 
   @doc """
-    Get info about channel and integrations
+    Get info about channel and integrations by query
+    Ex:
+
+    query =  \"\"\"
+      {
+        channel(id: 1) {
+          name
+          permalink
+          url
+          disabled
+          searchable
+          integrations(remote_id: "gigi"){
+            restaurant_location_id
+            restaurant_id
+          }
+        }
+      }
+    \"\"\"
+
+    Zuppler.Channel.find(query)
+  """
+  @spec find(String.t) :: {:ok, %__MODULE__{}} | {:error, String.t}
+  def find(query) do
+    body = %{query: query}
+    find_in_restaurants(body)
+  end
+
+  @doc """
+    Get info about channel and integrations by named query with variables
     Ex:
 
     query =  \"\"\"
@@ -37,15 +65,22 @@ defmodule Zuppler.Channel do
 
     Zuppler.Channel.find(query, variables)
   """
-  @spec find(String.t, nil | map) :: {:ok, %__MODULE__{}} | {:error, String.t}
-  def find(query, variables \\ nil) do
+  @spec find(String.t, map) :: {:ok, %__MODULE__{}} | {:error, String.t}
+  def find(query, variables) do
+    body = %{query: query, variables: variables}
+    find_in_restaurants(body)
+  end
+
+  defp find_in_restaurants(body_params) do
     url = channel_url()
-    Logger.info "Loading channel from #{url} \n with query: #{inspect(query)} \n and variables: #{inspect(variables)}"
+    Logger.info "Loading channel from \"#{url}\" with params:"
+    Logger.info inspect(body_params, pretty: true)
+
     headers = ["Content-type": "application/json"]
-    body = Poison.encode!(construct_body(query, variables))
+    body = Poison.encode!(body_params)
     response = HTTPoison.post channel_url(), body, headers
 
-    Logger.debug fn -> "Response: #{inspect(response.body)}" end
+    Logger.debug fn -> "Response: #{inspect(response)}" end
 
     case response do
       {:ok, %HTTPoison.Response{status_code: 200, body: data}} ->
@@ -60,14 +95,6 @@ defmodule Zuppler.Channel do
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, inspect(reason)}
     end
-  end
-
-  defp construct_body(query, nil) do
-    %{query: query}
-  end
-
-  defp construct_body(query, variables) do
-    %{query: query, variables: variables}
   end
 
   @spec channel_url() :: String.t

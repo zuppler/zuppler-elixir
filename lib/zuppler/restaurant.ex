@@ -11,6 +11,7 @@ defmodule Zuppler.Restaurant do
                          locations: list(Zuppler.Location.t),
                          locale: String.t}
 
+  require Logger
   alias Zuppler.Utilities.DataConvertor
 
   @doc """
@@ -65,11 +66,80 @@ defmodule Zuppler.Restaurant do
 
       {:error, message}
   """
-  @spec find(String.t, map | nil) :: {:ok, %__MODULE__{}} | {:error, String.t}
-  def find(query, variables \\ nil) do
+  @spec find(String.t) :: {:ok, %__MODULE__{}} | {:error, String.t}
+  def find(query) do
+    find_restaurant(%{query: query})
+  end
+
+    @doc """
+  Load Zuppler Retaurant by named graphql query with variables
+
+  ## Example
+      query = \"\"\"
+        query RestaurantById($id: ID) {
+          restaurant(id: $id) {
+            name
+            id
+            cuisines
+            amenities
+            locations {
+              id
+              address {
+                city
+                country
+                state
+                geo {
+                  lat
+                  lng
+                }
+              }
+            }
+          }
+        }
+      \"\"\"
+      variables = %{id: 242}
+      Zuppler.Restaurant.find(query, variables)
+
+  should return something like this:
+
+      {:ok, %Zuppler.Restaurant{amenities: "Online Orders, Cocktail, Air Condition (A/C), Late Night",
+        cuisines: "Continental, Pizza, Seafood",
+        locations: [
+          %Zuppler.Location{
+            id: 1,
+            %Zuppler.Address{city: "Norristown", country: nil,
+              geo: %Zuppler.Address.Geo{lat: 40.14543, lng: -75.393859}, id: "685",
+              state: "PA"}
+          },
+          %Zuppler.Location{
+            id: 2,
+            %Zuppler.Address{city: "Conshohocken", country: "US",
+              geo: %Zuppler.Address.Geo{lat: 40.074143, lng: -75.292784}, id: "757230",
+              state: "PA"}
+          }
+          ],
+        name: "demo", permalink: "demorestaurant"}
+      }
+
+  or
+
+      {:error, message}
+  """
+  @spec find(String.t, map) :: {:ok, %__MODULE__{}} | {:error, String.t}
+  def find(query, variables) do
+    find_restaurant(%{query: query, variables: variables})
+  end
+
+  defp find_restaurant(body_content) do
+    url = restaurant_url()
+    Logger.info "Loading restaurant from \"#{url}\" with params:"
+    Logger.info inspect(body_content, pretty: true)
+
     headers = ["Content-type": "application/json"]
-    body = Poison.encode!(body_content(query, variables))
-    response = HTTPoison.post restaurant_url(), body, headers
+    body = Poison.encode!(body_content)
+    response = HTTPoison.post url, body, headers
+
+    Logger.debug fn -> "Response: #{inspect(response)}" end
 
     case response do
       {:ok, %HTTPoison.Response{status_code: 200, body: data}} ->
@@ -83,16 +153,6 @@ defmodule Zuppler.Restaurant do
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, inspect(reason)}
     end
-  end
-
-  @spec body_content(String.t, nil) :: map
-  defp body_content(query, nil) do
-    %{query: query}
-  end
-
-  @spec body_content(String.t, map) :: map
-  defp body_content(query, variables) do
-    %{query: query, variables: variables}
   end
 
   @spec restaurant_url() :: String.t
